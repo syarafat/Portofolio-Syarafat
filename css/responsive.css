@@ -1,0 +1,460 @@
+/* ============================================
+   RESPONSIVE CSS
+   Mobile-first approach with breakpoints
+   ============================================ */
+
+/* ============================================
+   TABLET (max-width: 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    :root {
+        --section-padding: 80px 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 120px 24px 60px;
+        gap: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        justify-content: center;
+    }
+
+    .hero-description {
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .code-window {
+        transform: none;
+        animation: none;
+    }
+
+    .code-window:hover {
+        transform: none;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-image-wrapper {
+        order: -1;
+    }
+
+    .about-image-container {
+        max-width: 300px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+/* ============================================
+   MOBILE LARGE (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px 0;
+        --container-padding: 0 16px;
+    }
+
+    /* Navbar Mobile */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.97);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: var(--transition-smooth);
+        border-left: 1px solid var(--border-color);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 14px 28px;
+    }
+
+    /* Hero Mobile */
+    .hero {
+        min-height: auto;
+        padding: 100px 16px 40px;
+    }
+
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+        padding: 16px 20px;
+        gap: 16px;
+    }
+
+    .stat-number {
+        font-size: 1.4rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .stat-divider {
+        height: 30px;
+    }
+
+    /* Section Header */
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-tag {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+    }
+
+    /* About */
+    .about-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .floating-card {
+        font-size: 0.75rem;
+        padding: 8px 14px;
+    }
+
+    .floating-card:nth-child(1) {
+        right: -10px;
+    }
+
+    .floating-card:nth-child(2) {
+        left: -5px;
+    }
+
+    /* Skills */
+    .skill-category {
+        padding: 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .skill-card {
+        padding: 16px 12px;
+    }
+
+    /* Projects */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    /* Timeline */
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-marker {
+        left: -30px;
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-highlights {
+        gap: 8px;
+    }
+
+    .timeline-highlights span {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+
+    /* Contact */
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Back to top */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* ============================================
+   MOBILE SMALL (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .hero {
+        padding: 90px 12px 30px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-stats {
+        width: 100%;
+    }
+
+    .hero-visual {
+        max-width: 100%;
+    }
+
+    .code-body {
+        font-size: 0.72rem;
+        padding: 14px;
+    }
+
+    .about-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-header h3 {
+        font-size: 1rem;
+    }
+
+    .project-info {
+        padding: 16px;
+    }
+
+    .project-title {
+        font-size: 1.05rem;
+    }
+
+    .project-desc {
+        font-size: 0.88rem;
+    }
+
+    .contact-card {
+        padding: 14px 16px;
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 14px 14px 14px 44px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ============================================
+   LARGE SCREENS (min-width: 1400px)
+   ============================================ */
+@media (min-width: 1400px) {
+    :root {
+        --container-width: 1320px;
+    }
+
+    .hero {
+        gap: 80px;
+    }
+
+    .hero-content {
+        max-width: 680px;
+    }
+
+    .hero-visual {
+        max-width: 550px;
+    }
+}
+
+/* ============================================
+   ULTRA WIDE (min-width: 1920px)
+   ============================================ */
+@media (min-width: 1920px) {
+    :root {
+        --container-width: 1440px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .code-window {
+        transform: none;
+        animation: none;
+    }
+
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .cursor-glow {
+        display: none;
+    }
+
+    #particleCanvas {
+        display: none;
+    }
+}
+
+/* ============================================
+   HOVER MEDIA QUERY (touch devices)
+   ============================================ */
+@media (hover: none) {
+    .cursor-glow {
+        display: none;
+    }
+
+    .project-overlay {
+        opacity: 1;
+        background: rgba(10, 10, 15, 0.6);
+    }
+
+    .project-link {
+        transform: translateY(0);
+    }
+
+    .code-window {
+        transform: none;
+        animation: none;
+    }
+
+    .skill-card:hover {
+        transform: none;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .navbar,
+    .back-to-top,
+    .cursor-glow,
+    #particleCanvas,
+    .loading-screen,
+    .scroll-indicator {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .section {
+        padding: 20px 0;
+        page-break-inside: avoid;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}
