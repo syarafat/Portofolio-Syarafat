@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Syarafat Syazwan</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: #263238;
+      background: linear-gradient(180deg, #edf2f7 0%, #e4ebf1 100%);
+      line-height: 1.6;
+      font-size: 10.5pt;
+    }
+
+    .download-bar {
+      max-width: 210mm;
+      margin: 20px auto 12px;
+      text-align: right;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #355c7d;
+      color: #ffffff;
+      border: none;
+      padding: 10px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: 'Inter', Arial, sans-serif;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-download:hover {
+      background: #27455f;
+      transform: translateY(-1px);
+    }
+
+    .cv-page {
+      max-width: 210mm;
+      margin: 0 auto 28px;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(27, 39, 51, 0.12);
+      border-radius: 22px;
+      padding: 30px 34px;
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        margin: 0;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+
+      .cv-page {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .download-bar {
+        display: none;
+      }
+
+      .header {
+        margin-bottom: 12px;
+        padding: 0 0 10px;
+      }
+
+      .section {
+        break-inside: auto;
+        page-break-inside: auto;
+        margin-bottom: 9px;
+      }
+
+      .entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        margin-bottom: 5px;
+        padding-bottom: 2px;
+      }
+
+      .entry ul {
+        margin-top: 2px;
+        padding-left: 16px;
+      }
+
+      .entry ul li,
+      .cert-list li {
+        margin-bottom: 1px;
+      }
+
+      .project-tech,
+      .entry-subtitle,
+      .contact-links,
+      .cert-issuer {
+        font-size: 9pt;
+      }
+
+      .profile-photo {
+        width: 112px;
+        height: 112px;
+      }
+
+      .skill-tags {
+        gap: 5px;
+      }
+
+      .skill-tag {
+        padding: 4px 9px;
+      }
+
+      .page-break-before {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .print-next-page {
+        break-before: page;
+        page-break-before: always;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 0 0 18px;
+      border-bottom: 1px solid #d7e0e8;
+    }
+
+    .profile-photo {
+      width: 136px;
+      height: 136px;
+      border-radius: 24px;
+      object-fit: cover;
+      object-position: center;
+      border: 3px solid #ffffff;
+      box-shadow: 0 10px 24px rgba(53, 92, 125, 0.18);
+      background: #d8dee5;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
+    .header-copy h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: #1f3447;
+      margin-bottom: 4px;
+    }
+
+    .header .subtitle {
+      font-size: 11pt;
+      color: #516170;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .contact-info {
+      font-size: 10pt;
+      color: #4d5c69;
+      margin-bottom: 4px;
+    }
+
+    .contact-info a {
+      color: #4d5c69;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-info .sep {
+      margin: 0 8px;
+      color: #a3afba;
+    }
+
+    .contact-links {
+      margin-top: 6px;
+      font-size: 9.5pt;
+    }
+
+    .contact-links a {
+      color: #355c7d;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section p {
+      margin: 0;
+      color: #31424f;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      border-bottom: 1px solid #d7e0e8;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #355c7d;
+    }
+
+    .entry {
+      margin-bottom: 12px;
+    }
+
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
+
+    .entry-title {
+      font-weight: 700;
+      font-size: 11pt;
+      color: #213547;
+    }
+
+    .entry-date {
+      font-size: 10pt;
+      color: #6b7b88;
+      white-space: nowrap;
+    }
+
+    .entry-subtitle {
+      font-size: 9.5pt;
+      color: #687784;
+      margin-bottom: 4px;
+    }
+
+    .entry ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    .entry ul li {
+      margin-bottom: 3px;
+      font-size: 10pt;
+      color: #31424f;
+    }
+
+    .project-tech {
+      font-size: 9.4pt;
+      color: #6a7b88;
+      margin-bottom: 4px;
+    }
+
+    .skills-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-group {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px 14px;
+      align-items: start;
+      padding: 9px 0;
+      border-bottom: 1px dashed #dde5ec;
+    }
+
+    .skill-group:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .skill-group-title {
+      font-weight: 700;
+      color: #27455f;
+      font-size: 10pt;
+      padding-top: 4px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #f3f7fa;
+      border: 1px solid #dce5ec;
+      color: #3a4b59;
+      font-size: 9.6pt;
+    }
+
+    .cert-list {
+      list-style: disc;
+      padding-left: 18px;
+    }
+
+    .cert-list li {
+      font-size: 10pt;
+      margin-bottom: 4px;
+      color: #31424f;
+    }
+
+    .cert-issuer {
+      color: #687784;
+      font-size: 9.5pt;
+    }
+
+    .page-break-before {
+      break-before: page;
+      page-break-before: always;
+    }
+
+    @media (max-width: 720px) {
+      .cv-page {
+        padding: 24px 20px;
+        border-radius: 0;
+      }
+
+      .header {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .entry-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+
+      .skill-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="download-bar">
+    <button class="btn-download" onclick="downloadPDF()">Download CV as PDF</button>
+  </div>
+
+  <div class="cv-page" id="cv-content">
+
+    <div class="header">
+      <img src="MyProfile.jpeg" alt="Foto profil Syarafat Syazwan" class="profile-photo" id="profile-photo" decoding="sync" fetchpriority="high">
+      <div class="header-copy">
+        <h1>Syarafat Syazwan, S.Kom.</h1>
+        <div class="subtitle">Front-End Web Developer dengan dasar IT support dan minat kuat pada antarmuka yang rapi, responsif, dan nyaman dipakai.</div>
+        <div class="contact-info">
+          <a href="mailto:syarafatsyazwan36@gmail.com">syarafatsyazwan36@gmail.com</a>
+          <span class="sep">|</span>
+          0822-8586-4910
+          <span class="sep">|</span>
+          Medan, Sumatera Utara
+        </div>
+        <div class="contact-links">
+          <a href="https://syarafat.github.io/Portofolio-Syarafat/index.html" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Ringkasan Profil</div>
+      <p>
+        Lulusan Teknik Informatika Universitas Mikroskil yang berfokus pada pengembangan front-end web. Terbiasa
+        membangun tampilan yang responsif dengan HTML, CSS, dan JavaScript, serta memiliki pengalaman magang sebagai
+        IT support yang memperkuat kemampuan problem solving, troubleshooting, dan komunikasi kerja. Nyaman belajar
+        mandiri, teliti saat mengerjakan detail antarmuka, dan siap berkembang pada peran Front-End Developer.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Pengalaman Kerja</div>
+
+      <div class="entry">
+        <div class="entry-row">
+          <div class="entry-title">IT Support Intern - Manage Service</div>
+          <div class="entry-date">Juni 2025 - Oktober 2025</div>
+        </div>
+        <div class="entry-subtitle">Magang 4 bulan</div>
+        <ul>
+          <li>Melakukan instalasi, konfigurasi, dan deployment mesin EDC di lokasi merchant sesuai standar operasional perusahaan.</li>
+          <li>Melaksanakan preventive maintenance dan troubleshooting perangkat EDC, menangani kendala jaringan serta kerusakan hardware secara on-site.</li>
+          <li>Berkoordinasi dengan tim pusat untuk eskalasi masalah teknis dan memastikan SLA terpenuhi.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-row">
+          <div class="entry-title">Barista - WRC Warung Community</div>
+          <div class="entry-date">November 2025 - Februari 2026</div>
+        </div>
+        <ul>
+          <li>Melakukan kalibrasi dan pemeliharaan harian peralatan operasional untuk memastikan zero downtime.</li>
+          <li>Mengelola customer service dan komunikasi produk dalam lingkungan kerja yang cepat dan dinamis.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Proyek</div>
+
+      <div class="entry">
+        <div class="entry-row">
+          <div class="entry-title">CuacaVerse - Smart Weather Dashboard</div>
+          <div class="entry-date">2025</div>
+        </div>
+        <div class="project-tech">Tech Stack: HTML, CSS, JavaScript, REST API, Canvas API</div>
+        <ul>
+          <li>Membangun dashboard cuaca interaktif dengan data real-time, prakiraan 5 hari, kualitas udara, dan visualisasi suhu berbasis Canvas API.</li>
+          <li>Mengintegrasikan OpenWeatherMap API untuk menampilkan data cuaca yang dinamis berdasarkan input pengguna.</li>
+          <li>Menerapkan antarmuka responsif dengan fokus pada keterbacaan informasi dan kenyamanan pengguna.</li>
+        </ul>
+      </div>
+
+      <div class="print-next-page">
+        <div class="entry">
+          <div class="entry-row">
+            <div class="entry-title">Kasir App - Point of Sale System</div>
+            <div class="entry-date">2025</div>
+          </div>
+          <div class="project-tech">Tech Stack: HTML, CSS, JavaScript, LocalStorage</div>
+          <ul>
+            <li>Mengembangkan aplikasi kasir berbasis web untuk pengelolaan produk, transaksi, laporan harian, dan pencatatan pengeluaran.</li>
+            <li>Mengimplementasikan penyimpanan data lokal menggunakan LocalStorage untuk mendukung penggunaan tanpa backend.</li>
+            <li>Menambahkan fitur ekspor ringkasan transaksi agar operasional harian lebih mudah dipantau.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-row">
+            <div class="entry-title">Deteksi Penyakit WSSV pada Udang Vaname (Tugas Akhir)</div>
+            <div class="entry-date">2025</div>
+          </div>
+          <div class="project-tech">Tech Stack: Python, Faster R-CNN, TensorFlow/PyTorch, Computer Vision</div>
+          <ul>
+            <li>Mengembangkan model deep learning untuk deteksi dan klasifikasi penyakit White Spot Syndrome Virus (WSSV) pada udang vaname menggunakan algoritma Faster R-CNN.</li>
+            <li>Mengumpulkan dan melakukan anotasi dataset gambar udang untuk training object detection model.</li>
+            <li>Mengevaluasi performa model menggunakan metrik precision, recall, dan mAP.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Pendidikan</div>
+      <div class="entry">
+        <div class="entry-row">
+          <div class="entry-title">Universitas Mikroskil - Medan, Sumatera Utara</div>
+          <div class="entry-date">2021 - 2025</div>
+        </div>
+        <div class="entry-subtitle">S1 Teknik Informatika - IPK 3.18 / 4.00</div>
+        <ul>
+          <li>Mata kuliah relevan: Front-End Web Development (A), Back-End Web Development, Mobile App Development, Machine Learning, Deep Learning, Computer Vision, Cloud Computing, DevOps, dan Agile Software Development (A).</li>
+          <li>Aktif mengembangkan kemampuan melalui kursus online, dokumentasi teknis, dan proyek latihan mandiri di bidang pengembangan web.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Keterampilan</div>
+      <div class="skills-list">
+        <div class="skill-group">
+          <div class="skill-group-title">Front-End</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Responsive Web Design</span>
+            <span class="skill-tag">UI Implementation</span>
+            <span class="skill-tag">Layouting</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Tools & Workflow</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Visual Studio Code</span>
+            <span class="skill-tag">Chrome DevTools</span>
+            <span class="skill-tag">Testing Dasar</span>
+            <span class="skill-tag">Dokumentasi Teknis</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Programming</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">SQL Dasar</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">AI & Computer Vision</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Deep Learning</span>
+            <span class="skill-tag">Object Detection</span>
+            <span class="skill-tag">Faster R-CNN</span>
+            <span class="skill-tag">Dataset Annotation</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">IT Support</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Hardware Troubleshooting</span>
+            <span class="skill-tag">Network Troubleshooting</span>
+            <span class="skill-tag">Preventive Maintenance</span>
+            <span class="skill-tag">EDC Configuration</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Soft Skills</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Komunikasi</span>
+            <span class="skill-tag">Kerja Tim</span>
+            <span class="skill-tag">Adaptif</span>
+            <span class="skill-tag">Manajemen Waktu</span>
+            <span class="skill-tag">Teliti</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Sertifikasi</div>
+      <ul class="cert-list">
+        <li>Menjadi Front-End Web Developer Expert <span class="cert-issuer">- Dicoding Indonesia</span></li>
+        <li>Belajar Fundamental Front-End Web Development <span class="cert-issuer">- Dicoding Indonesia</span></li>
+        <li>Meniti Karier sebagai Software Developer <span class="cert-issuer">- Dicoding Indonesia</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    async function optimizeProfilePhoto() {
+      const profilePhoto = document.getElementById('profile-photo');
+      if (!profilePhoto) return;
+
+      const source = profilePhoto.getAttribute('src');
+      const img = new Image();
+      img.decoding = 'sync';
+
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = source;
+      }).catch(() => null);
+
+      if (!img.naturalWidth || !img.naturalHeight) return;
+
+      const canvasSize = 720;
+      const canvas = document.createElement('canvas');
+      canvas.width = canvasSize;
+      canvas.height = canvasSize;
+
+      const ctx = canvas.getContext('2d', { alpha: false });
+      if (!ctx) return;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      const srcSize = Math.min(img.naturalWidth, img.naturalHeight);
+      const sx = (img.naturalWidth - srcSize) / 2;
+      const topOffset = srcSize * 0.22;
+      const maxSy = img.naturalHeight - srcSize;
+      const sy = Math.min(Math.max((img.naturalHeight - srcSize) / 2 + topOffset, 0), maxSy);
+
+      ctx.drawImage(img, sx, sy, srcSize, srcSize, 0, 0, canvasSize, canvasSize);
+      profilePhoto.src = canvas.toDataURL('image/png');
+    }
+
+    async function downloadPDF() {
+      const downloadButton = document.querySelector('.btn-download');
+      const cvContent = document.getElementById('cv-content');
+
+      await optimizeProfilePhoto();
+
+      downloadButton.disabled = true;
+      downloadButton.textContent = 'Generating PDF...';
+
+      const options = {
+        margin: [8, 8, 8, 8],
+        filename: 'CV-Syarafat-Syazwan.pdf',
+        image: { type: 'png', quality: 1 },
+        html2canvas: {
+          scale: 3,
+          useCORS: true,
+          backgroundColor: '#ffffff'
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: {
+          mode: ['css', 'legacy'],
+          before: '.print-next-page',
+          avoid: '.entry'
+        }
+      };
+
+      try {
+        await html2pdf().set(options).from(cvContent).save();
+      } finally {
+        downloadButton.disabled = false;
+        downloadButton.textContent = 'Download CV as PDF';
+      }
+    }
+
+    optimizeProfilePhoto();
+  </script>
+</body>
+</html>

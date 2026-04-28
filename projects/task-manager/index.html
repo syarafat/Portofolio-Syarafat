@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaskFlow - Aplikasi Manajemen Tugas Kuliah">
+    <title>TaskFlow - Manajemen Tugas Kuliah</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+    <div class="app">
+        <header class="app-header">
+            <div class="header-left">
+                <a href="../../index.html" class="back-link" title="Kembali ke Portfolio">
+                    <i class="ph ph-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <div class="logo-icon"><i class="ph ph-kanban"></i></div>
+                    <div class="logo-text">
+                        <span class="logo-name">TaskFlow</span>
+                        <span class="logo-tagline">Manajemen Tugas Kuliah</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="board"><i class="ph ph-kanban"></i> Board</button>
+                    <button class="view-btn" data-view="list"><i class="ph ph-list"></i> List</button>
+                    <button class="view-btn" data-view="calendar"><i class="ph ph-calendar"></i> Calendar</button>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Cari tugas...">
+                </div>
+                <button class="btn-add" id="addTaskBtn">
+                    <i class="ph ph-plus"></i>
+                    <span>Tugas Baru</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-chip">
+                <i class="ph ph-list-checks"></i>
+                <span>Total: <strong id="totalTasks">0</strong></span>
+            </div>
+            <div class="stat-chip todo">
+                <span class="stat-dot"></span>
+                <span>To Do: <strong id="todoCount">0</strong></span>
+            </div>
+            <div class="stat-chip progress">
+                <span class="stat-dot"></span>
+                <span>In Progress: <strong id="progressCount">0</strong></span>
+            </div>
+            <div class="stat-chip done">
+                <span class="stat-dot"></span>
+                <span>Done: <strong id="doneCount">0</strong></span>
+            </div>
+            <div class="stat-chip overdue">
+                <span class="stat-dot"></span>
+                <span>Overdue: <strong id="overdueCount">0</strong></span>
+            </div>
+            <div class="progress-bar-mini">
+                <div class="progress-fill-mini" id="overallProgress"></div>
+            </div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+
+        <main class="main-content">
+            <!-- Board View -->
+            <div class="board-view" id="boardView">
+                <div class="board-column" data-status="todo">
+                    <div class="column-header">
+                        <div class="column-title"><span class="column-dot todo"></span> To Do</div>
+                        <span class="column-count" id="colTodo">0</span>
+                    </div>
+                    <div class="column-body" id="todoColumn"></div>
+                </div>
+                <div class="board-column" data-status="progress">
+                    <div class="column-header">
+                        <div class="column-title"><span class="column-dot progress"></span> In Progress</div>
+                        <span class="column-count" id="colProgress">0</span>
+                    </div>
+                    <div class="column-body" id="progressColumn"></div>
+                </div>
+                <div class="board-column" data-status="review">
+                    <div class="column-header">
+                        <div class="column-title"><span class="column-dot review"></span> Review</div>
+                        <span class="column-count" id="colReview">0</span>
+                    </div>
+                    <div class="column-body" id="reviewColumn"></div>
+                </div>
+                <div class="board-column" data-status="done">
+                    <div class="column-header">
+                        <div class="column-title"><span class="column-dot done"></span> Done</div>
+                        <span class="column-count" id="colDone">0</span>
+                    </div>
+                    <div class="column-body" id="doneColumn"></div>
+                </div>
+            </div>
+
+            <!-- List View -->
+            <div class="list-view" id="listView" style="display:none;">
+                <div class="list-header">
+                    <span class="lh-title">Tugas</span>
+                    <span class="lh-course">Mata Kuliah</span>
+                    <span class="lh-priority">Prioritas</span>
+                    <span class="lh-deadline">Deadline</span>
+                    <span class="lh-status">Status</span>
+                    <span class="lh-actions">Aksi</span>
+                </div>
+                <div class="list-body" id="listBody"></div>
+            </div>
+
+            <!-- Calendar View -->
+            <div class="calendar-view" id="calendarView" style="display:none;">
+                <div class="cal-header">
+                    <button class="cal-nav" id="calPrev"><i class="ph ph-caret-left"></i></button>
+                    <h3 id="calMonth">--</h3>
+                    <button class="cal-nav" id="calNext"><i class="ph ph-caret-right"></i></button>
+                </div>
+                <div class="cal-weekdays">
+                    <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span>
+                    <span>Kam</span><span>Jum</span><span>Sab</span>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal" id="taskModal">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Tugas Baru</h3>
+                    <button class="modal-close" id="modalClose"><i class="ph ph-x"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Judul Tugas</label>
+                        <input type="text" id="taskTitle" placeholder="Masukkan judul tugas...">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea id="taskDesc" placeholder="Deskripsi tugas..." rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mata Kuliah</label>
+                            <select id="taskCourse">
+                                <option value="">Pilih Mata Kuliah</option>
+                                <option value="Algoritma & Pemrograman">Algoritma & Pemrograman</option>
+                                <option value="Basis Data">Basis Data</option>
+                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                <option value="Jaringan Komputer">Jaringan Komputer</option>
+                                <option value="Kecerdasan Buatan">Kecerdasan Buatan</option>
+                                <option value="Matematika Diskrit">Matematika Diskrit</option>
+                                <option value="Sistem Operasi">Sistem Operasi</option>
+                                <option value="Pemrograman Web">Pemrograman Web</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Prioritas</label>
+                            <select id="taskPriority">
+                                <option value="low">Rendah</option>
+                                <option value="medium" selected>Sedang</option>
+                                <option value="high">Tinggi</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Deadline</label>
+                            <input type="date" id="taskDeadline">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="taskStatus">
+                                <option value="todo">To Do</option>
+                                <option value="progress">In Progress</option>
+                                <option value="review">Review</option>
+                                <option value="done">Done</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Anggota Tim</label>
+                        <div class="team-select">
+                            <label class="team-check"><input type="checkbox" value="Syarafat"> Syarafat</label>
+                            <label class="team-check"><input type="checkbox" value="Ahmad"> Ahmad</label>
+                            <label class="team-check"><input type="checkbox" value="Budi"> Budi</label>
+                            <label class="team-check"><input type="checkbox" value="Cindy"> Cindy</label>
+                            <label class="team-check"><input type="checkbox" value="Dewi"> Dewi</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" id="cancelBtn">Batal</button>
+                    <button class="btn-save" id="saveBtn"><i class="ph ph-check"></i> Simpan</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <p>TaskFlow &copy; 2024 | Dibuat oleh <strong>Syarafat Syazwan</strong></p>
+            <p class="footer-note">Data tersimpan di browser (LocalStorage)</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

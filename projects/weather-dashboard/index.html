@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CuacaVerse - AI-Powered Weather Dashboard dengan visualisasi data interaktif">
+    <title>CuacaVerse - Smart Weather Dashboard</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Particles -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- App Container -->
+    <div class="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <a href="../../index.html" class="back-link" title="Kembali ke Portfolio">
+                    <i class="ph ph-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="ph ph-cloud-sun"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">CuacaVerse</span>
+                        <span class="logo-tagline">Smart Weather Dashboard</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="ph ph-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari kota... (contoh: Jakarta, Tokyo, London)" autocomplete="off">
+                    <button class="search-btn" id="searchBtn" title="Cari">
+                        <i class="ph ph-arrow-right"></i>
+                    </button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="header-action" id="geoBtn" title="Gunakan lokasi saya">
+                    <i class="ph ph-crosshair"></i>
+                </button>
+                <button class="header-action" id="unitToggle" title="Ganti unit suhu">
+                    <span class="unit-text">°C</span>
+                </button>
+                <div class="current-time" id="currentTime"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loader-ring"></div>
+                <p>Mengambil data cuaca...</p>
+            </div>
+
+            <!-- Welcome State -->
+            <div class="welcome-state" id="welcomeState">
+                <div class="welcome-icon">
+                    <i class="ph ph-cloud-sun"></i>
+                </div>
+                <h2>Selamat Datang di CuacaVerse</h2>
+                <p>Cari kota atau gunakan lokasi Anda untuk melihat informasi cuaca real-time</p>
+                <div class="quick-cities">
+                    <span class="quick-city" data-city="Jakarta">Jakarta</span>
+                    <span class="quick-city" data-city="Surabaya">Surabaya</span>
+                    <span class="quick-city" data-city="Bandung">Bandung</span>
+                    <span class="quick-city" data-city="Tokyo">Tokyo</span>
+                    <span class="quick-city" data-city="Singapore">Singapore</span>
+                    <span class="quick-city" data-city="London">London</span>
+                </div>
+            </div>
+
+            <!-- Weather Content (hidden initially) -->
+            <div class="weather-content" id="weatherContent" style="display: none;">
+                
+                <!-- Top Row: Current Weather + Details -->
+                <div class="grid-top">
+                    <!-- Current Weather Card -->
+                    <section class="card card-current">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-map-pin"></i> Cuaca Saat Ini</span>
+                            <span class="card-timestamp" id="lastUpdated"></span>
+                        </div>
+                        <div class="current-main">
+                            <div class="current-left">
+                                <div class="weather-icon-large" id="weatherIconLarge">
+                                    <canvas id="weatherAnimation" width="140" height="140"></canvas>
+                                </div>
+                                <div class="current-condition" id="currentCondition">--</div>
+                            </div>
+                            <div class="current-right">
+                                <div class="current-location">
+                                    <h2 id="cityName">--</h2>
+                                    <span id="countryName">--</span>
+                                </div>
+                                <div class="current-temp">
+                                    <span class="temp-value" id="currentTemp">--</span>
+                                    <span class="temp-unit">°C</span>
+                                </div>
+                                <div class="temp-feel">
+                                    Terasa seperti <span id="feelsLike">--</span>°
+                                </div>
+                                <div class="temp-range">
+                                    <span class="temp-high"><i class="ph ph-arrow-up"></i> <span id="tempHigh">--</span>°</span>
+                                    <span class="temp-low"><i class="ph ph-arrow-down"></i> <span id="tempLow">--</span>°</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Weather Details Grid -->
+                    <section class="card card-details">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-info"></i> Detail Cuaca</span>
+                        </div>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-drop"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="humidity">--</span><span class="detail-suffix">%</span>
+                                    <span class="detail-label">Kelembapan</span>
+                                </div>
+                                <div class="detail-bar">
+                                    <div class="detail-bar-fill" id="humidityBar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-wind"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="windSpeed">--</span><span class="detail-suffix"> km/h</span>
+                                    <span class="detail-label">Kec. Angin</span>
+                                </div>
+                                <div class="detail-compass">
+                                    <div class="compass-arrow" id="windDirection"></div>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-gauge"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="pressure">--</span><span class="detail-suffix"> hPa</span>
+                                    <span class="detail-label">Tekanan Udara</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-eye"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="visibility">--</span><span class="detail-suffix"> km</span>
+                                    <span class="detail-label">Jarak Pandang</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-sun-horizon"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="sunrise">--:--</span>
+                                    <span class="detail-label">Terbit</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class="ph ph-moon-stars"></i></div>
+                                <div class="detail-info">
+                                    <span class="detail-value" id="sunset">--:--</span>
+                                    <span class="detail-label">Terbenam</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Hourly Forecast -->
+                <section class="card card-hourly">
+                    <div class="card-header">
+                        <span class="card-tag"><i class="ph ph-clock"></i> Prakiraan Per Jam</span>
+                    </div>
+                    <div class="hourly-scroll" id="hourlyScroll">
+                        <!-- Filled by JS -->
+                    </div>
+                </section>
+
+                <!-- Bottom Row: Forecast + Chart -->
+                <div class="grid-bottom">
+                    <!-- 5-Day Forecast -->
+                    <section class="card card-forecast">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-calendar"></i> Prakiraan 5 Hari</span>
+                        </div>
+                        <div class="forecast-list" id="forecastList">
+                            <!-- Filled by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Temperature Chart -->
+                    <section class="card card-chart">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-chart-line-up"></i> Grafik Suhu</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Air Quality + UV Index -->
+                <div class="grid-extra">
+                    <section class="card card-aqi">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-leaf"></i> Kualitas Udara</span>
+                        </div>
+                        <div class="aqi-content">
+                            <div class="aqi-gauge">
+                                <svg viewBox="0 0 120 120" class="aqi-svg">
+                                    <circle cx="60" cy="60" r="52" class="aqi-track"/>
+                                    <circle cx="60" cy="60" r="52" class="aqi-fill" id="aqiFill"/>
+                                </svg>
+                                <div class="aqi-value-container">
+                                    <span class="aqi-number" id="aqiValue">--</span>
+                                    <span class="aqi-label" id="aqiLabel">--</span>
+                                </div>
+                            </div>
+                            <div class="aqi-details">
+                                <div class="aqi-pollutant">
+                                    <span class="pollutant-name">PM2.5</span>
+                                    <span class="pollutant-value" id="pm25">--</span>
+                                </div>
+                                <div class="aqi-pollutant">
+                                    <span class="pollutant-name">PM10</span>
+                                    <span class="pollutant-value" id="pm10">--</span>
+                                </div>
+                                <div class="aqi-pollutant">
+                                    <span class="pollutant-name">O3</span>
+                                    <span class="pollutant-value" id="o3">--</span>
+                                </div>
+                                <div class="aqi-pollutant">
+                                    <span class="pollutant-name">NO2</span>
+                                    <span class="pollutant-value" id="no2">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="card card-uv">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-sun"></i> UV Index</span>
+                        </div>
+                        <div class="uv-content">
+                            <div class="uv-scale">
+                                <div class="uv-indicator" id="uvIndicator" style="left: 0%"></div>
+                            </div>
+                            <div class="uv-info">
+                                <span class="uv-value" id="uvValue">--</span>
+                                <span class="uv-label" id="uvLabel">--</span>
+                            </div>
+                            <p class="uv-advice" id="uvAdvice">--</p>
+                        </div>
+                    </section>
+
+                    <section class="card card-map">
+                        <div class="card-header">
+                            <span class="card-tag"><i class="ph ph-map-trifold"></i> Lokasi</span>
+                        </div>
+                        <div class="map-placeholder" id="mapContainer">
+                            <div class="map-coords">
+                                <span><i class="ph ph-navigation-arrow"></i> Lat: <span id="lat">--</span></span>
+                                <span><i class="ph ph-navigation-arrow"></i> Lon: <span id="lon">--</span></span>
+                            </div>
+                            <div class="map-visual">
+                                <div class="map-pin">
+                                    <i class="ph-fill ph-map-pin"></i>
+                                </div>
+                                <div class="map-grid-lines"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <div class="error-icon">
+                    <i class="ph ph-warning-circle"></i>
+                </div>
+                <h3>Oops! Terjadi Kesalahan</h3>
+                <p id="errorMessage">Kota tidak ditemukan. Silakan coba lagi.</p>
+                <button class="btn-retry" id="retryBtn">
+                    <i class="ph ph-arrow-counter-clockwise"></i> Coba Lagi
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>CuacaVerse &copy; 2024 | Dibuat oleh <strong>Syarafat Syazwan</strong></p>
+            <p class="footer-api">Data dari OpenWeatherMap API</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

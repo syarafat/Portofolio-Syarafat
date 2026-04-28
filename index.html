@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Syarafat Syazwan, S.Kom. - Fresh Graduate S1 Teknik Informatika Universitas Mikroskil | Front-End Web Developer">
+    <meta name="keywords" content="portofolio, teknik informatika, front-end developer, web developer, universitas mikroskil, fresh graduate">
+    <meta name="author" content="Syarafat Syazwan">
+    <title>Syarafat Syazwan | Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Syarafat Syazwan, S.Kom. - Portfolio">
+    <meta property="og:description" content="Fresh Graduate S1 Teknik Informatika Universitas Mikroskil | Front-End Web Developer">
+    <meta property="og:type" content="website">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0a0f">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <span class="loader-text">INITIALIZING</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SS</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+                <li><a href="#cv" class="nav-link" data-section="cv">CV</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down">
+                <i class="ph ph-terminal-window"></i>
+                <span>Fresh Graduate</span>
+            </div>
+            
+            <h1 class="hero-title" data-aos="fade-up">
+                <span class="hero-greeting">Hello, I'm</span>
+                <span class="hero-name glitch" data-text="Syarafat Syazwan">Syarafat Syazwan</span>
+            </h1>
+            
+            <div class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                <span class="typing-prefix">I'm a </span>
+                <span class="typing-text" id="typingText"></span>
+                <span class="typing-cursor">|</span>
+            </div>
+            
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                Lulusan Teknik Informatika Universitas Mikroskil yang berfokus pada pengembangan
+                front-end web, antarmuka responsif, dan pengalaman pengguna yang rapi serta mudah dipahami.
+            </p>
+            
+            <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="ph ph-folder-notch-open"></i>
+                    <span>Lihat Proyek</span>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="ph ph-envelope"></i>
+                    <span>Hubungi Saya</span>
+                </a>
+            </div>
+            
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3.18" data-decimals="2">0</span>
+                    <span class="stat-label">IPK</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Sertifikasi</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Proyek Utama</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-visual" data-aos="fade-left" data-aos-delay="400">
+            <div class="code-window">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="code-title">profile.js</span>
+                </div>
+                <pre class="code-body"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">"Syarafat Syazwan, S.Kom."</span>,
+  <span class="code-property">title</span>: <span class="code-string">"Front-End Web Developer"</span>,
+  <span class="code-property">education</span>: <span class="code-string">"S1 Teknik Informatika"</span>,
+  <span class="code-property">university</span>: <span class="code-string">"Universitas Mikroskil"</span>,
+  <span class="code-property">skills</span>: [<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>, <span class="code-string">"JavaScript"</span>],
+  <span class="code-property">gpa</span>: <span class="code-string">"3.18 / 4.00"</span>,
+  <span class="code-method">solve</span>(<span class="code-variable">problem</span>) {
+    <span class="code-keyword">return</span> <span class="code-string">"Solution"</span>;
+  }
+};</code></pre>
+            </div>
+        </div>
+        
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="ph ph-caret-double-down"></i>
+        </a>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-user-circle"></i> Tentang Saya</span>
+                <h2 class="section-title">Who Am I<span class="accent">?</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-image-wrapper" data-aos="fade-right">
+                    <div class="about-image-container">
+                        <div class="about-image-frame">
+                            <img src="MyProfile.jpeg" alt="Syarafat Syazwan" class="about-image">
+                        </div>
+                        <div class="about-image-decoration"></div>
+                    </div>
+                    
+                    <div class="about-floating-cards">
+                        <div class="floating-card" data-aos="zoom-in" data-aos-delay="300">
+                            <i class="ph ph-graduation-cap"></i>
+                            <span>S.Kom.</span>
+                        </div>
+                        <div class="floating-card" data-aos="zoom-in" data-aos-delay="500">
+                            <i class="ph ph-book-open"></i>
+                            <span>Eager to Learn</span>
+                        </div>
+                        <div class="floating-card" data-aos="zoom-in" data-aos-delay="700">
+                            <i class="ph ph-handshake"></i>
+                            <span>Open to Work</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-content" data-aos="fade-left">
+                    <h3 class="about-subtitle">
+                        Fresh Graduate <span class="text-gradient">Teknik Informatika</span>
+                    </h3>
+                    
+                    <p class="about-text">
+                        Saya adalah lulusan <strong>S1 Teknik Informatika</strong> dari <strong>Universitas Mikroskil</strong>.
+                        Fokus saya saat ini ada pada pengembangan front-end web, terutama membangun tampilan yang
+                        responsif, rapi, dan nyaman digunakan. Saya terbiasa belajar mandiri melalui dokumentasi,
+                        kursus online, dan proyek latihan yang relevan.
+                    </p>
+                    
+                    <p class="about-text">
+                        Selain pengembangan web, saya memiliki pengalaman magang sebagai IT support yang memperkuat
+                        kemampuan troubleshooting, komunikasi kerja, dan penyelesaian masalah secara sistematis.
+                        Saya juga mengerjakan tugas akhir di bidang computer vision, sehingga terbiasa bekerja dengan
+                        proses belajar yang detail dan terstruktur.
+                    </p>
+                    
+                    <div class="about-info-grid">
+                        <div class="info-item">
+                            <i class="ph ph-map-pin"></i>
+                            <div>
+                                <span class="info-label">Lokasi</span>
+                                <span class="info-value">Medan, Sumatera Utara</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="ph ph-graduation-cap"></i>
+                            <div>
+                                <span class="info-label">Pendidikan</span>
+                                <span class="info-value">S1 Teknik Informatika - Universitas Mikroskil</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="ph ph-envelope-simple"></i>
+                            <div>
+                                <span class="info-label">Email</span>
+                                <span class="info-value">syarafatsyazwan36@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="ph ph-briefcase"></i>
+                            <div>
+                                <span class="info-label">Status</span>
+                                <span class="info-value">Open to Work</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="ph ph-file-text"></i>
+                        <span>Buka CV Saya</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-wrench"></i> Keahlian</span>
+                <h2 class="section-title">Keterampilan<span class="accent">.</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-categories" id="skillsCategories">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="ph ph-code-simple"></i>
+                        </div>
+                        <h3>Front-End</h3>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"></div><span class="skill-name">HTML5</span><div class="skill-level"><div class="skill-bar" data-level="78"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"></div><span class="skill-name">CSS3</span><div class="skill-level"><div class="skill-bar" data-level="72"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div><span class="skill-name">JavaScript</span><div class="skill-level"><div class="skill-bar" data-level="66"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-devices" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Responsive Web Design</span><div class="skill-level"><div class="skill-bar" data-level="74"></div></div></div>
+                    </div>
+                </div>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="ph ph-git-branch"></i>
+                        </div>
+                        <h3>Tools & Workflow</h3>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div><span class="skill-name">Git</span><div class="skill-level"><div class="skill-bar" data-level="68"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></div><span class="skill-name">GitHub</span><div class="skill-level"><div class="skill-bar" data-level="64"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></div><span class="skill-name">VS Code</span><div class="skill-level"><div class="skill-bar" data-level="72"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-bug-beetle" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Chrome DevTools</span><div class="skill-level"><div class="skill-bar" data-level="65"></div></div></div>
+                    </div>
+                </div>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="ph ph-wrench"></i>
+                        </div>
+                        <h3>IT Support & Soft Skills</h3>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-wrench" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Hardware Troubleshooting</span><div class="skill-level"><div class="skill-bar" data-level="68"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-wrench" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Network Troubleshooting</span><div class="skill-level"><div class="skill-bar" data-level="63"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-users-three" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Komunikasi</span><div class="skill-level"><div class="skill-bar" data-level="72"></div></div></div>
+                        <div class="skill-card"><div class="skill-icon-wrapper"><i class="ph ph-users-three" style="font-size: 2.5rem; color: var(--accent-primary);"></i></div><span class="skill-name">Problem Solving</span><div class="skill-level"><div class="skill-bar" data-level="70"></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-folder-notch-open"></i> Proyek</span>
+                <h2 class="section-title">Proyek Pilihan<span class="accent">.</span></h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <article class="project-card featured" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <div class="project-image-placeholder" style="background: linear-gradient(135deg, rgba(0,229,195,0.1), rgba(124,93,250,0.1)); position: relative;">
+                            <i class="ph ph-cloud-sun" style="font-size: 3.5rem; opacity: 0.7;"></i>
+                            <span style="position: absolute; bottom: 12px; right: 14px; font-family: 'Orbitron', sans-serif; font-size: 0.6rem; color: var(--accent-primary); opacity: 0.6; letter-spacing: 2px;">PROJECT</span>
+                        </div>
+                        <div class="project-overlay"><div class="project-links"><a href="projects/weather-dashboard/index.html" class="project-link" title="Lihat Proyek"><i class="ph ph-arrow-square-out"></i></a></div></div>
+                    </div>
+                    <div class="project-info"><div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">REST API</span></div><h3 class="project-title">CuacaVerse - Smart Weather Dashboard</h3><p class="project-desc">Membangun dashboard cuaca interaktif dengan data real-time, prakiraan 5 hari, kualitas udara, dan visualisasi suhu berbasis Canvas API.</p></div>
+                </article>
+                <article class="project-card featured" data-category="web" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <div class="project-image-placeholder" style="background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(22,163,74,0.1)); position: relative;">
+                            <i class="ph ph-shopping-cart-simple" style="font-size: 3.5rem; opacity: 0.7;"></i>
+                            <span style="position: absolute; bottom: 12px; right: 14px; font-family: 'Orbitron', sans-serif; font-size: 0.6rem; color: var(--accent-primary); opacity: 0.6; letter-spacing: 2px;">PROJECT</span>
+                        </div>
+                        <div class="project-overlay"><div class="project-links"><a href="projects/kasir-app/index.html" class="project-link" title="Lihat Proyek"><i class="ph ph-arrow-square-out"></i></a></div></div>
+                    </div>
+                    <div class="project-info"><div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">LocalStorage</span></div><h3 class="project-title">Kasir App - Point of Sale System</h3><p class="project-desc">Mengembangkan aplikasi kasir berbasis web untuk pengelolaan produk, transaksi, laporan harian, dan pencatatan pengeluaran.</p></div>
+                </article>
+                <article class="project-card featured" data-category="ai" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <div class="project-image-placeholder" style="background: linear-gradient(135deg, rgba(74,222,128,0.1), rgba(124,93,250,0.1)); position: relative;">
+                            <i class="ph ph-brain" style="font-size: 3.5rem; opacity: 0.7;"></i>
+                            <span style="position: absolute; bottom: 12px; right: 14px; font-family: 'Orbitron', sans-serif; font-size: 0.6rem; color: var(--accent-primary); opacity: 0.6; letter-spacing: 2px;">PROJECT</span>
+                        </div>
+                    </div>
+                    <div class="project-info"><div class="project-tags"><span class="tag">Python</span><span class="tag">Faster R-CNN</span><span class="tag">Computer Vision</span></div><h3 class="project-title">Deteksi Penyakit WSSV pada Udang Vaname</h3><p class="project-desc">Mengembangkan model deep learning untuk deteksi dan klasifikasi penyakit White Spot Syndrome Virus (WSSV) pada udang vaname.</p></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EDUCATION SECTION ==================== -->
+    <section class="section education" id="education">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-graduation-cap"></i> Pendidikan & Pengalaman</span>
+                <h2 class="section-title">Perjalanan Saya<span class="accent">.</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="timeline" id="educationTimeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-marker"><i class="ph ph-graduation-cap"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">2021 - 2025</div>
+                        <h3 class="timeline-title">S1 Teknik Informatika</h3>
+                        <h4 class="timeline-subtitle">Universitas Mikroskil - Medan, Sumatera Utara</h4>
+                        <p class="timeline-desc">Menyelesaikan pendidikan S1 Teknik Informatika dengan IPK 3.18 / 4.00 dan aktif memperkuat dasar pengembangan web melalui mata kuliah, kursus online, dan proyek latihan mandiri.</p>
+                        <div class="timeline-highlights"><span><i class="ph ph-star"></i> IPK 3.18 / 4.00</span><span><i class="ph ph-book-open"></i> Front-End Web Development</span><span><i class="ph ph-certificate"></i> S.Kom.</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-marker"><i class="ph ph-buildings"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Juni 2025 - Oktober 2025</div>
+                        <h3 class="timeline-title">IT Support Intern - Manage Service</h3>
+                        <h4 class="timeline-subtitle">Magang 4 bulan</h4>
+                        <p class="timeline-desc">Melakukan instalasi, konfigurasi, preventive maintenance, dan troubleshooting mesin EDC di lokasi merchant serta berkoordinasi untuk penanganan kendala teknis.</p>
+                        <div class="timeline-highlights"><span><i class="ph ph-wrench"></i> Hardware Troubleshooting</span><span><i class="ph ph-wifi-high"></i> Network Troubleshooting</span><span><i class="ph ph-gear"></i> Preventive Maintenance</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-marker"><i class="ph ph-coffee"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">November 2025 - Februari 2026</div>
+                        <h3 class="timeline-title">Barista - WRC Warung Community</h3>
+                        <h4 class="timeline-subtitle">Pengalaman kerja operasional</h4>
+                        <p class="timeline-desc">Menangani operasional harian, menjaga kesiapan peralatan, dan berkomunikasi dengan pelanggan dalam lingkungan kerja yang cepat dan dinamis.</p>
+                        <div class="timeline-highlights"><span><i class="ph ph-chat-circle"></i> Komunikasi</span><span><i class="ph ph-users"></i> Customer Service</span><span><i class="ph ph-clock"></i> Adaptif</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CV SECTION ==================== -->
+    <section class="section cv-section" id="cv">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-file-text"></i> CV Saya</span>
+                <h2 class="section-title">Curriculum Vitae<span class="accent">.</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="cv-preview-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="cv-iframe-container">
+                    <iframe src="cv.html" id="cvFrame" title="CV Syarafat Syazwan"></iframe>
+                </div>
+                <p class="section-desc" style="margin-top: 1.25rem; text-align: center; max-width: 760px; margin-left: auto; margin-right: auto;">
+                    CV ini memuat ringkasan profil, pengalaman, proyek, pendidikan, dan keterampilan yang sudah disesuaikan dengan versi terbaru.
+                </p>
+                <div class="cv-actions">
+                    <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="ph ph-arrow-square-out"></i>
+                        <span>Buka CV Saya</span>
+                    </a>
+                    <button class="btn btn-outline" onclick="downloadCV()">
+                        <i class="ph ph-download-simple"></i>
+                        <span>Unduh CV PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="ph ph-paper-plane-tilt"></i> Kontak</span>
+                <h2 class="section-title">Get in Touch<span class="accent">.</span></h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Tertarik untuk berkolaborasi atau punya pertanyaan? Jangan ragu untuk menghubungi saya!</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="ph ph-envelope"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>Email</h4>
+                            <a href="mailto:syarafatsyazwan36@gmail.com">syarafatsyazwan36@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="ph ph-phone"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>Phone</h4>
+                            <a href="tel:+6282285864910">+62 822-8586-4910</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="ph ph-map-pin"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>Location</h4>
+                            <span>Tanjung Rejo, Setia Budi, Medan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="ph ph-github-logo"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="ph ph-linkedin-logo"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="ph ph-instagram-logo"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="ph ph-twitter-logo"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm" data-aos="fade-left">
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <i class="ph ph-user"></i>
+                            <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <i class="ph ph-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <i class="ph ph-text-t"></i>
+                            <input type="text" id="subject" name="subject" placeholder="Subject">
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-wrapper textarea-wrapper">
+                            <i class="ph ph-chat-text"></i>
+                            <textarea id="message" name="message" placeholder="Pesan Anda..." rows="5" required></textarea>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="ph ph-paper-plane-right"></i>
+                        <span>Kirim Pesan</span>
+                        <div class="btn-loading">
+                            <div class="spinner"></div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#hero" class="footer-logo">
+                        <span class="logo-bracket">&lt;</span>
+                        <span class="logo-text">Syarafat Syazwan</span>
+                        <span class="logo-bracket">/&gt;</span>
+                    </a>
+                    <p>Fresh Graduate S1 Teknik Informatika - Universitas Mikroskil</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Syarafat Syazwan, S.Kom. All Rights Reserved.</p>
+                <p class="footer-tech">Built with <i class="ph ph-heart" style="color: var(--accent-primary);"></i> and Vanilla JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="ph ph-caret-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        function downloadCV() {
+            window.open('cv.html', '_blank');
+        }
+    </script>
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

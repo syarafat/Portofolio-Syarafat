@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CosmicBlast - Space Shooter Game</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app-header">
+            <div class="header-left">
+                <a href="../../index.html" class="back-link"><i class="ph ph-arrow-left"></i></a>
+                <div class="logo">
+                    <div class="logo-icon"><i class="ph ph-game-controller"></i></div>
+                    <div><span class="logo-name">CosmicBlast</span><span class="logo-tagline">Space Shooter</span></div>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="game-hud">
+                    <div class="hud-item"><i class="ph ph-star"></i> Score: <strong id="scoreDisplay">0</strong></div>
+                    <div class="hud-item"><i class="ph ph-heart"></i> Lives: <strong id="livesDisplay">3</strong></div>
+                    <div class="hud-item"><i class="ph ph-lightning"></i> Level: <strong id="levelDisplay">1</strong></div>
+                    <div class="hud-item"><i class="ph ph-trophy"></i> Best: <strong id="highScoreDisplay">0</strong></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-container">
+            <!-- Menu Screen -->
+            <div class="menu-screen" id="menuScreen">
+                <div class="menu-content">
+                    <h1 class="game-title">Cosmic<span>Blast</span></h1>
+                    <p class="game-subtitle">Space Shooter</p>
+                    <div class="menu-buttons">
+                        <button class="btn-play" id="playBtn"><i class="ph ph-play"></i> Mulai Main</button>
+                    </div>
+                    <div class="controls-info">
+                        <h3>Kontrol</h3>
+                        <div class="control-grid">
+                            <div class="ctrl"><kbd>W</kbd> / <kbd>↑</kbd><span>Atas</span></div>
+                            <div class="ctrl"><kbd>S</kbd> / <kbd>↓</kbd><span>Bawah</span></div>
+                            <div class="ctrl"><kbd>A</kbd> / <kbd>←</kbd><span>Kiri</span></div>
+                            <div class="ctrl"><kbd>D</kbd> / <kbd>→</kbd><span>Kanan</span></div>
+                            <div class="ctrl"><kbd>Space</kbd><span>Tembak</span></div>
+                            <div class="ctrl"><kbd>P</kbd><span>Pause</span></div>
+                        </div>
+                    </div>
+                    <div class="leaderboard">
+                        <h3><i class="ph ph-trophy"></i> Leaderboard</h3>
+                        <div id="leaderboardList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <canvas id="gameCanvas"></canvas>
+
+            <!-- Pause Screen -->
+            <div class="pause-screen" id="pauseScreen" style="display:none;">
+                <h2>PAUSED</h2>
+                <p>Tekan <kbd>P</kbd> untuk lanjut</p>
+                <button class="btn-resume" id="resumeBtn">Lanjut</button>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div class="gameover-screen" id="gameoverScreen" style="display:none;">
+                <h2>GAME OVER</h2>
+                <div class="go-stats">
+                    <div class="go-stat"><span class="go-val" id="goScore">0</span><span class="go-lbl">Score</span></div>
+                    <div class="go-stat"><span class="go-val" id="goLevel">1</span><span class="go-lbl">Level</span></div>
+                    <div class="go-stat"><span class="go-val" id="goKills">0</span><span class="go-lbl">Kills</span></div>
+                </div>
+                <div class="go-input">
+                    <input type="text" id="playerName" placeholder="Nama kamu..." maxlength="15">
+                </div>
+                <div class="go-buttons">
+                    <button class="btn-play" id="retryBtn"><i class="ph ph-arrow-counter-clockwise"></i> Main Lagi</button>
+                    <button class="btn-menu" id="menuBtn"><i class="ph ph-house"></i> Menu</button>
+                </div>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="mobile-controls" id="mobileControls" style="display:none;">
+                <div class="dpad">
+                    <button class="dpad-btn up" data-key="up"><i class="ph ph-caret-up"></i></button>
+                    <button class="dpad-btn left" data-key="left"><i class="ph ph-caret-left"></i></button>
+                    <button class="dpad-btn right" data-key="right"><i class="ph ph-caret-right"></i></button>
+                    <button class="dpad-btn down" data-key="down"><i class="ph ph-caret-down"></i></button>
+                </div>
+                <button class="fire-btn" data-key="fire"><i class="ph ph-crosshair"></i></button>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>CosmicBlast &copy; 2024 | <strong>Syarafat Syazwan</strong> | Canvas API + JavaScript</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
